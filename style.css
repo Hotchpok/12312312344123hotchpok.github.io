@@ -3,7 +3,13 @@ p, h1 {
 }
 
 video {
-    margin: 10 auto;
+    display: block;
+    margin: -100000px -100000px -100000px -1010000px;
     width: 500px;
 
+}
+
+img {
+    width: max-content;
+    height: max-content;
 }

